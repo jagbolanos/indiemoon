@@ -2,7 +2,7 @@ Indiemoon::Application.routes.draw do
   match '/', to: 'static_pages#home'
   match 'home', to: 'static_pages#home'
   match 'about', to: 'static_pages#about'
-
+  match 'signup', to: 'users#new'
   resources :events
 
   resources :users
