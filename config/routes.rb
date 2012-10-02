@@ -1,7 +1,6 @@
 Indiemoon::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/info"
-  get "static_pages/about"
+  match 'home', to: 'static_pages#home'
+  match 'about', to: 'static_pages#about'
 
   resources :events
 
