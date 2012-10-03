@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :index]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy]
+  before_filter :owner_or_admin_user, only: [:edit, :update]
+  before_filter :admin_user, only: [:destroy, :index]
 
   # GET /users
   # GET /users.json
@@ -70,6 +71,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    flash[:success] = "User destroyed."
     @user.destroy
 
     respond_to do |format|
@@ -90,5 +92,14 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
+
+  def owner_or_admin_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user) || current_user.admin? 
   end
 end
