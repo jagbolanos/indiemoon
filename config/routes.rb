@@ -1,11 +1,16 @@
 Indiemoon::Application.routes.draw do
   match '/', to: 'static_pages#home'
-  match 'home', to: 'static_pages#home'
-  match 'about', to: 'static_pages#about'
-  match 'signup', to: 'users#new'
+  match '/home', to: 'static_pages#home'
+  match '/about', to: 'static_pages#about'
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+
   resources :events
 
   resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
