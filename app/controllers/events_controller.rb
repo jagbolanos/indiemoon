@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :edit, :update, :destroy]
+
   # GET /events
   # GET /events.json
   def index
