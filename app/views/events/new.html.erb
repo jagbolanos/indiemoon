@@ -1,5 +1,17 @@
+<% provide(:title, 'New Event') %>
 <h1>New event</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', events_path %>
+<div class='row'>
+  <div class='span6 offset3'>
+    <%= form_for(@event) do |f| %>
+      <%= render 'shared/error_messages', object: f.object  %>
+      <%= f.text_field :name, placeholder: "Event title" %>
+      <div class="field">
+        <%= f.text_area :description, placeholder: "Tell us about the event...", rows:5 %>
+      </div>
+      <div class="field">
+        <%= f.text_area :address, placeholder: "Where is it?", rows:3 %>
+      </div>
+      <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
