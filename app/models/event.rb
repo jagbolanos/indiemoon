@@ -20,4 +20,14 @@ class Event < ActiveRecord::Base
       errors.add(:end_time, "is set before the event starts")
     end
   end
+
+  def self.week_events_byday_and_ongoing
+    week = (Date.current..(Date.current+7)).to_a
+    events = Event.where("end_date >= ? and start_date <= ?", week[0], week[7])
+    this_week=week.map{|day| {:day=>day, :events=>events.map{|e| e if e.start_date==day || e.end_date==day}.compact}}
+    ongoing=events.map{|e| e if e.start_date < week[0] && e.end_date > week[7]}.compact
+
+    {:this_week => this_week, :ongoing => ongoing}
+  end
+
 end

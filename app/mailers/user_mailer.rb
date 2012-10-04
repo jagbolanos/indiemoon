@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@indiemoon.com"
+  default from: "Indiemoon <no-reply@indiemoon.com>"
 
   def welcome_email(user)
     @user = user
@@ -7,9 +7,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Welcome to Indiemoon")
   end
 
-  def week_events(user)
-    @user = user
-    @events = Event.all
-    mail(:to => user.email, :subject => "Events of the week")
+  def week_events
+    allusers = User.all.map {|user| user.email}
+    @events = Event.week_events_byday_and_ongoing
+    mail(:bcc => allusers, :subject => "Events week #{Date.current.to_s(:short)} to #{(Date.current+7).to_s(:short)}")
   end
 end
