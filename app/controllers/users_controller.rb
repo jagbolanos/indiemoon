@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"a
+      flash[:success] = "Welcome to the Sample App!"
       UserMailer.welcome_email(@user).deliver
       redirect_to @user
     else

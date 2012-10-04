@@ -11,6 +11,10 @@
       <div class="field">
         <%= f.text_area :address, placeholder: "Where is it?", rows:3 %>
       </div>
+      <div class="field"><%= f.date_select :start_date %></div>
+      <div class="field"><%= f.time_select :start_time %></div>
+      <div class="field"><%= f.date_select :end_date %></div>
+      <div class="field"><%= f.time_select :end_time %></div>
       <%= f.submit "Create", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004000720) do
+ActiveRecord::Schema.define(:version => 20121004185132) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(:version => 20121004000720) do
     t.datetime "updated_at",  :null => false
     t.string   "description"
     t.string   "address"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   add_index "events", ["start_date", "end_date"], :name => "index_events_on_start_date_and_end_date"
