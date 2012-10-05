@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>This week</h1>
+<h2>This week</h2>
 <% @events[:this_week].each do |day| %>
   <% if day[:events].length > 0 %>
-    <h2><%= day[:day].to_s(:short) %></h2>
+    <h3><%= day[:day].to_s(:short) %></h3>
     <ul>
     <% day[:events].each do |event| %>
       <li><%= event.name %></li>
     <% end %>
     </ul>
   <% end %>
+<% end %>
+<% if @events[:ongoing].length > 0 %>
+  <h2>Ongoing</h2>
+  <ul>
+  <% @event[:ongoing].each do |event| %>
+    <li><%= event.name %></li>
+  <% end %>
+  </ul>
 <% end %>
 </body>
 </html>

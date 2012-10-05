@@ -1,7 +1,24 @@
-<div class="center hero-unit">
-<h1>Welcome to Indiemoon</h1>
-	
-This is the home page of Indiemoon.
-
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<% if !signed_in? %>
+<div class="alert alert-info">
+If you want to know the events of the week on your email: <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
+<% end %>
+<h2>This week</h2>
+<% @events[:this_week].each do |day| %>
+  <% if day[:events].length > 0 %>
+    <h3><%= day[:day].to_s(:short) %></h3>
+    <ul>
+    <% day[:events].each do |event| %>
+      <li><%= event.name %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+<% if @events[:ongoing].length > 0 %>
+  <h2>Ongoing</h2>
+  <ul>
+  <% @event[:ongoing].each do |event| %>
+    <li><%= event.name %></li>
+  <% end %>
+  </ul>
+<% end %>
