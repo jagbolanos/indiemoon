@@ -9,7 +9,7 @@ If you want to know the events of the week on your email: <%= link_to "Sign up n
     <h3><%= day[:day].to_s(:short) %></h3>
     <ul>
     <% day[:events].each do |event| %>
-      <li><%= event.name %></li>
+      <li><%= event.name %> @ <%= event.address%></li>
     <% end %>
     </ul>
   <% end %>
@@ -18,7 +18,7 @@ If you want to know the events of the week on your email: <%= link_to "Sign up n
   <h2>Ongoing</h2>
   <ul>
   <% @event[:ongoing].each do |event| %>
-    <li><%= event.name %></li>
+    <li><%= event.name %> @ <%= event.address %> </li>
   <% end %>
   </ul>
 <% end %>

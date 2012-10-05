@@ -7,7 +7,7 @@
     <h3><%= day[:day].to_s(:short) %></h3>
     <ul>
     <% day[:events].each do |event| %>
-      <li><%= event.name %></li>
+      <li><%= event.name %> @ <%= event.address %></li>
     <% end %>
     </ul>
   <% end %>
@@ -16,7 +16,7 @@
   <h2>Ongoing</h2>
   <ul>
   <% @event[:ongoing].each do |event| %>
-    <li><%= event.name %></li>
+    <li><%= event.name %> @ <%= event.address %></li>
   <% end %>
   </ul>
 <% end %>
